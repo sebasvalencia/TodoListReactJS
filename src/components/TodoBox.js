@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
 import '../styles/TodoBox.css';
+import PropsTypes from 'prop-types';
+
 
 class TodoBox extends Component{
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state={
       todoText: ''
     }
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e){
@@ -17,10 +20,23 @@ class TodoBox extends Component{
     });
   }
 
+  onSubmit(e){
+    //console.log(e);
+    e.preventDefault();//evitar q el evento se propague
+    this.props.onSubmit(e);//Manda a llamar el metodo del padre
+    this.setState({todoText: ''});//poner en blaco el input
+  }
+
+  //regresa el valor desde App.js
+  getInputValue(){
+    return this.state.todoText;
+  }
+
+
   render(){
     return(
       <div className="TodoBox">
-        <form>
+        <form onSubmit={this.onSubmit}>
           <input
               type="text"
               value={this.state.todoText}
@@ -34,5 +50,10 @@ class TodoBox extends Component{
   }
 
 }
+
+TodoBox.PropsTypes = {
+  onSubmit : PropsTypes.func.isRequired
+}
+
 
 export default TodoBox;
