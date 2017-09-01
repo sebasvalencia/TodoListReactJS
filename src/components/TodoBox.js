@@ -39,10 +39,12 @@ class TodoBox extends Component{
         <form onSubmit={this.onSubmit}>
           <input
               type="text"
+              className="TodoBox-input"
               value={this.state.todoText}
               onChange={this.onChange}/>
           <input
               type="submit"
+              className="TodoBox-button"
               value="Agregar"/>
         </form>
       </div>

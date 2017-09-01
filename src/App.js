@@ -36,6 +36,7 @@ constructor(){
     //console.log("todoItems: ",this.state.todoItems);
     return (
       <div className="App">
+        <h1 className="App-title">Mi primer Todo List</h1>
         <TodoBox
           ref="todobox"
           onSubmit={this.onSubmit}/>
